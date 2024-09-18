@@ -5,7 +5,8 @@ import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-form',
-  templateUrl: './pokemon-form.component.html'
+  templateUrl: './pokemon-form.component.html',
+  styleUrls:['./pokemon-form.component.css']
 })
 export class PokemonFormComponent implements OnInit {
   @Input() pokemon: Pokemon;
@@ -32,6 +33,16 @@ export class PokemonFormComponent implements OnInit {
       const index=this.pokemon.types.indexOf(type);
       this.pokemon.types.splice(index, 1);
     }
+  }
+
+  isTypesValid(type: string):boolean{
+    if(this.pokemon.types.length == 1 && this.hasType(type)){
+      return false;
+    }
+    if(this.pokemon.types.length >2 && !this.hasType(type)){
+      return false;
+    }
+    return true;
   }
 
   onSubmit(){
