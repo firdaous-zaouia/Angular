@@ -12,9 +12,8 @@ import { FormsModule } from '@angular/forms';
     PageNotFoundComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,FormsModule,
     PokemonModule,
-    FormsModule,
     AppRoutingModule
   ],
   providers: [],

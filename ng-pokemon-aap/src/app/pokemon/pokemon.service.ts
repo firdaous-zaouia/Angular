@@ -10,7 +10,7 @@ getPokemonList(): Pokemon[]{
   return POKEMONS;
 }
 
-getPkemonById(pokemonId: number): Pokemon|undefined{
+getPokemonById(pokemonId: number): Pokemon|undefined{
   return POKEMONS.find(pokemon => pokemon.id == pokemonId);
 }
 
