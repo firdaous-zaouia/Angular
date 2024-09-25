@@ -33,19 +33,33 @@
       <label>Name</label>
       <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched"
         class="form-control " name="userName" [(ngModel)]="userModel.name">
+      <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
     </div>
 
 
 
     <div class="form-group">
       <label for="">Email</label>
-      <input type="email" class="form-control" name="email" [(ngModel)]="userModel.email">
+      <input type="email" #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$
+      " class="form-control" name="email" [(ngModel)]="userModel.email">
+      <div *ngIf="email.errors &&(email.invalid || email.untouched)">
+        <small class="text-danger" *ngIf="email.errors['required']">email is required</small>
+        <small class="text-danger" *ngIf="email.errors['pattern']">email must be a valide forme</small>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="">Phone</label>
-      <input type="tel" #phone="ngModel" pattern="^\d{10}$" [class.is-invalid]="phone.invalid && phone.touched"
+      <input type="tel" #phone="ngModel" pattern="^\d{10}$" required [class.is-invalid]="phone.invalid && phone.touched"
         class="form-control" name="phone" [(ngModel)]="userModel.phone">
+      <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number is required and must be 10
+        bigest</small> -->
+      <div *ngIf="phone.errors && (phone.invalid || phone.untouched)">
+        <small class="text-danger" *ngIf="phone.errors['required']">phonenumber is required</small>
+        <small class="text-danger" *ngIf="phone.errors['pattern']">phone number must be 10 digits</small>
+      </div>
+
+
     </div>
 
     <div class="form-group">
