@@ -5,6 +5,7 @@ import { error } from 'console';
 
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -14,6 +15,7 @@ export class AppComponent {
   topics = ['Angular', 'React', 'Vue'];
   topicHasError = true;
   submitted =false;
+  errorMsg = '';
 
   userModel = new User('', 'rob@test.com', 5555588, 'default', 'morning', true);
 
@@ -31,7 +33,7 @@ export class AppComponent {
     this.submitted = true;
     this._enrollmentService.enroll(this.userModel).subscribe({
       next: (data) => console.log('Success!', data),
-      error: (error) =>console.error('Error!', error),
+      error: (error) =>this.errorMsg = error.statusText,
       complete: () => console.log('Completed')
   })
     
