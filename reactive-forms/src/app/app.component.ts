@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { forbiddenNameValidator } from './shared/userName.validator';
+import { PasswordValidator } from './shared/password.validator';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +25,7 @@ export class AppComponent {
       State: [''],
       postalcode:['']
     })
-  })
+  }, {validator: PasswordValidator});
 
   // registrationForm = new FormGroup({
   //   userName: new FormControl(''),
