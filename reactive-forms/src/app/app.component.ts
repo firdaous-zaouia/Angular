@@ -1,5 +1,6 @@
+import { state } from '@angular/animations';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +9,29 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AppComponent {
 
-  registrationForm = new FormGroup({
-    userName: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    adresse: new FormGroup({
-      city: new FormControl(''),
-      State: new FormControl(''),
-      postalcode: new FormControl('')
+  constructor(private fb: FormBuilder){}
+
+  registrationForm = this.fb.group({
+    userName: ['vishwas'],
+    password: [''],
+    confirmPassword: [''],
+    adresse: this.fb.group({
+      city: [''],
+      State: [''],
+      postalcode:['']
     })
-  });
+  })
+
+  // registrationForm = new FormGroup({
+  //   userName: new FormControl(''),
+  //   password: new FormControl(''),
+  //   confirmPassword: new FormControl(''),
+  //   adresse: new FormGroup({
+  //     city: new FormControl(''),
+  //     State: new FormControl(''),
+  //     postalcode: new FormControl('')
+  //   })
+  // });
 
   loadApiData() {
     this.registrationForm.setValue({
