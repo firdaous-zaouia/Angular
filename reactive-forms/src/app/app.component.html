@@ -15,6 +15,9 @@
           required</small>
         <small *ngIf="userName?.errors?.['minlength']" class="text-danger"> Username must be 3
           characters</small>
+        <small *ngIf="userName?.errors?.['forbiddenName']" class="text-danger">
+          {{userName?.errors?.['forbiddenName'].value}} Username not allowoed</small>
+
 
       </div>
     </div>
